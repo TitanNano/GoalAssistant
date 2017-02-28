@@ -20,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/TitanNano/GoalAssistant/issues"
   },
-  "homepage": "https://github.com/TitanNano/GoalAssistant#readme"
+  "homepage": "https://github.com/TitanNano/GoalAssistant#readme",
+  "devDependencies": {
+    "@af-modules/compiler": "^1.1.1",
+    "gulp": "^3.9.1",
+    "gulp-bundle-templates": "^1.0.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-vulcanize": "^6.1.0"
+  },
+  "dependencies": {
+    "@af-modules/databinding": "^1.1.0",
+    "@af-modules/router": "^0.1.0",
+    "application-frame": "^0.6.2"
+  }
 }
