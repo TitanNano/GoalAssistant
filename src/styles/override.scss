@@ -1,0 +1,9 @@
+paper-toggle-button {
+    &.paper-toggle-button-0 {
+        flex-direction: row-reverse;
+
+        .toggle-label {
+            flex: 1 1 100%;
+        }
+    }
+}
