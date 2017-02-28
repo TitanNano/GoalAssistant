@@ -1,0 +1,26 @@
+<template>
+    <paper-drawer-panel bind-model="view.selectedPanel" bind-model-event="iron-select:selected:target.selected" force-narrow="true">
+        <div drawer>
+            <paper-toolbar>
+                <div class="title">Menu</div>
+            </paper-toolbar>
+            <paper-listbox bind-model="view.currentPage" bind-model-event="iron-select:selected:target.selected">
+                <template bind-repeat="page in view.navigation">
+                    <paper-item>
+                        <paper-item-body>
+                            {{page.title}}
+                        </paper-item-body>
+                        <paper-ripple></paper-ripple>
+                    </paper-item>
+                </template>
+            </paper-listbox>
+        </div>
+        <div main view-container class="fullbleed layout vertical">
+            <template id="goal-list-page" src="pages/goal-list.html" replace></template>
+            <template id="settings-page" src="pages/settings.html" replace></template>
+            <template id="goal-details-page" src="pages/goal-details.html" replace></template>
+            <template id="step-details-page" src="pages/step-details.html" replace></template>
+            <template id="reminder-modal-page" src="pages/reminder-modal.html" replace></template>
+        </div>
+    </paper-drawer-panel>
+</template>

@@ -1,0 +1,23 @@
+<template>
+    <div bind-display="view.isActive" page goal-list-page>
+        <paper-header-panel class="flex" mode="waterfall">
+            <paper-toolbar>
+                <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+                <div class="title">{{view.title}}</div>
+            </paper-toolbar>
+            <div class="content fit">
+                <paper-listbox bind-event="selectedIndex:selectedIndex:currentTarget.selectedIndex">
+                    <template bind-repeat="item in view.currentGoals">
+                        <paper-item>
+                            <paper-item-body two-line>
+                                <div>{{item.title}}</div>
+                                <div secondary>Curent Step: {{view.getCurrentStep(item).title}}</div>
+                            </paper-item-body>
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                    </template>
+                </paper-listbox>
+            </div>
+        </paper-header-panel>
+    </div>
+</template>
