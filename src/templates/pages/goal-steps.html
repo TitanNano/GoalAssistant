@@ -1,0 +1,26 @@
+<template>
+    <paper-material elevation="2" page slide-page goal-steps-page bind-display="view.isVisible"
+        bind-animation="{ view.isActive: view.animateSlideIn, view.isNotActive: view.animateSlideOut }">
+        <paper-header-panel class="flex" mode="waterfall">
+            <paper-toolbar>
+                <paper-icon-button icon="arrow-back" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
+                <div class="title">{{view.currentGoal.title}}</div>
+            </paper-toolbar>
+            <div class="content fit">
+                <section class="padding">
+                    <h2>{{view.currentStep.title}}</h2>
+                </section>
+                <section>
+                    <textarea step-input rows="10"></textarea>
+                </section>
+                <hr>
+                <template bind-repeat="step in view.currentGoal">
+                    <section class="padding">
+                        {{step.noteData}}
+                    </section>
+                    <br>
+                </template>
+            </div>
+        </paper-header-panel>
+    </paper-material>
+</template>

@@ -3,6 +3,7 @@ import PageManager from './managers/PageManager';
 
 import GoalListPage from './pages/GoalListPage';
 import SettingsPage from './pages/SettingsPage';
+import GoalStepsPage from './pages/GoalStepsPage';
 
 const App = {
 
@@ -11,6 +12,7 @@ const App = {
     pages: [
         GoalListPage,
         SettingsPage,
+        GoalStepsPage,
     ],
 
     navigation: [
