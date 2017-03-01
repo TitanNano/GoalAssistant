@@ -33,6 +33,7 @@
     "iron-icons": "^1.2.0",
     "paper-drawer-panel": "^1.0.11",
     "paper-toggle-button": "^1.3.0",
-    "paper-ripple": "*"
+    "paper-ripple": "*",
+    "paper-material": "^1.0.6"
   }
 }
