@@ -1,6 +1,8 @@
 @import './base';
 @import './override';
 
+$page-bg-color: #fff;
+
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
@@ -8,4 +10,31 @@ body {
 
 .padding {
     padding: 16px;
+}
+
+[page] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $page-bg-color;
+    width: 100vw;
+    height: 100vh;
+}
+
+[step-input] {
+    $textarea-bg: #f5f5f5;
+
+    display: block;
+    border: 0;
+    background-color: $textarea-bg;
+    padding: 16px;
+    width: 100%;
+    font-size: 13px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+hr {
+    margin: 0;
+    padding: 0;
 }
