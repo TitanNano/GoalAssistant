@@ -1,7 +1,8 @@
 import ViewPage from '@af-modules/databinding/prototypes/ViewPage';
+import PageManager from '../managers/PageManager';
 
 const GoalListPage = {
-    route: '/',
+    route: '/goals',
 
     template: 'goal-list-page',
 
@@ -43,6 +44,10 @@ const GoalListPage = {
 
     get currentGoals() {
         return this._currentGoals;
+    },
+
+    onGoalSelected() {
+        PageManager.down('1234/steps');
     },
 
     __proto__: ViewPage,

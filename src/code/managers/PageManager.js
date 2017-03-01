@@ -48,13 +48,19 @@ const PageManager = {
     },
 
     init({ pages, navigation } = {}) {
-        super.init();
+        super.init([{
+            path: '/',
+            onEnter: () => {
+                this.switchTo(this.navigation[0].route);
+            }
+        }]);
+
         this.pages = pages;
         this.navigation = navigation;
         this.scope = DataBinding.makeTemplate(`#${this.template}`, { view: this });
 
         this.pages.forEach(page => page.constructor());
-        this.navigation.forEach(page => this.addRoutable(page.route, page));
+        this.pages.forEach(page => this.addRoutable(page.route, page));
 
         this.restore();
     },
