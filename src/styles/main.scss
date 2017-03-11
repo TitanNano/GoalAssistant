@@ -1,8 +1,6 @@
 @import './base';
 @import './override';
 
-$page-bg-color: #fff;
-
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
@@ -10,31 +8,90 @@ body {
 
 .padding {
     padding: 16px;
+
+    &.no-bottom {
+        padding-bottom: 0;
+    }
+}
+
+.padding-vertical {
+    padding: 0 16px;
 }
 
 [page] {
+    $page-bg-color: #fff;
+    $page-no-bg-color: #ededed;
+
     position: absolute;
     top: 0;
     left: 0;
     background-color: $page-bg-color;
     width: 100vw;
     height: 100vh;
+
+    &[page-no-bg] {
+        background-color: $page-no-bg-color;
+    }
 }
 
-[step-input] {
-    $textarea-bg: #f5f5f5;
-
-    display: block;
-    border: 0;
-    background-color: $textarea-bg;
-    padding: 16px;
-    width: 100%;
-    font-size: 13px;
-    box-sizing: border-box;
-    resize: none;
-}
-
-hr {
+hr  {
+    $border-color: #e4e4e4;
+    $text-color: #fff;
+    left: 0;
     margin: 0;
+    border: 0;
+    border-top: 1px solid $border-color;
     padding: 0;
+    width: 100%;
+    color: $text-color;
 }
+
+.subtitle {
+    $subtitle-color: #bbb;
+    color: $subtitle-color;
+    font-size: 14px;
+}
+
+textarea {
+    &[material-full-width]  {
+        $textarea-bg: #fff;
+        $border-color: #eaeaea;
+
+        display: block;
+        border: 0;
+        border-top: solid 1px $border-color;
+        background-color: $textarea-bg;
+        padding: 20px;
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        box-sizing: border-box;
+        resize: none;
+    }
+}
+
+.subheader {
+    $subheader-color: rgba(0, 0, 0, .54);
+
+    padding: 16px;
+    height: 48px;
+    color: $subheader-color;
+    font-size: 14px;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.subheader + paper-listbox {
+    padding-top: 0;
+}
+
+.relative-container {
+    position: relative;
+}
+
+.fab-aware {
+    margin-bottom: 88px;
+}
+
+@import './dialogs';
+@import './goal-steps';

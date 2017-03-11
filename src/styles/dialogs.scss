@@ -1,0 +1,12 @@
+[dialog-page] {
+    $animation-time: .3s;
+
+    transition: transform $animation-time ease-out, opacity $animation-time linear;
+    opacity: 1;
+
+    &:not(.movePageIn) {
+        transform: translate3d(0, 15%, 0);
+        transition: transform $animation-time ease-in, opacity $animation-time linear;
+        opacity: 0;
+    }
+}

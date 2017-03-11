@@ -1,0 +1,16 @@
+<template>
+    <paper-matertial page dialog-page step-edit-page elevation="2" bind-display="view.isVisible"
+        bind-animation="{ view.isActive: view.animateSlideIn, view.isNotActive: view.animateSlideOut }" mode="waterfall">
+        <paper-header-panel mode="waterfall">
+            <paper-toolbar>
+                <paper-icon-button icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
+                <div class="title">New Step</div>
+                <paper-button>Save</paper-button>
+            </paper-toolbar>
+            <div class="content fit padding">
+                <paper-input label="Step Title"></paper-input>
+                <paper-input label="Due To"></paper-date-picker>
+            </div>
+        </paper-header-panel>
+    </paper-matertial>
+</template>

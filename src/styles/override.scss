@@ -7,3 +7,84 @@ paper-toggle-button {
         }
     }
 }
+
+paper-card {
+    &:not(.no-margin) {
+        margin: 8px;
+    }
+
+    .card-content {
+        padding: 24px 16px;
+
+        &.bottom-actions {
+            padding: 0 16px 16px;
+        }
+    }
+
+    .card-title {
+        padding: 24px 16px 16px;
+    }
+
+    .card-title + .card-content {
+        padding: 0 16px 24px;
+    }
+
+    .card-title + .card-actions + .card-content {
+        padding: 16px 16px 24px;
+    }
+
+    .card-actions {
+        padding: 8px;
+
+        [role='button'] {
+            &:not(:last-child) {
+                margin: 0;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+paper-item-body {
+    [two-line] {
+        height: 72px;
+    }
+}
+
+paper-fab {
+    &.paper-fab-0 {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+
+        &[mini] {
+            top: 0;
+            bottom: auto;
+            transform: translateY(-50%);
+        }
+
+        &.left {
+            right: auto;
+            left: 16px;
+        }
+    }
+}
+
+paper-dialog {
+    border-radius: 2px;
+
+    .action-list {
+        padding: 0;
+
+        paper-button {
+            margin: 0;
+            padding: 20px 24px;
+        }
+    }
+}
+
+paper-item {
+    * {
+        pointer-events: none;
+    }
+}

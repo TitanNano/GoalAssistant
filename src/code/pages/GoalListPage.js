@@ -50,6 +50,10 @@ const GoalListPage = {
         PageManager.down('1234/steps');
     },
 
+    onCreateNewGoal() {
+        PageManager.down('new');
+    },
+
     __proto__: ViewPage,
 };
 

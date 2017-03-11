@@ -1,3 +1,32 @@
 <template>
-    <div></div>
+    <paper-dialog with-backdrop="true"
+        entry-animation="scale-up-animation"
+        exit-animation="{{view.reminderDialogExitStrategy}}"
+        bind-attr="{ name: opened, enabled: view.showReminderDialog }">
+        <h2>Reminder</h2>
+        <div>
+            Your current step "Do something" of the goal "Reach something" is
+            due for today 10 am. Did you already complete this step?
+        </div>
+        <div class="buttons">
+            <paper-button autofocus bind-events="{ click: view.onNotDone }">Not Yet</paper-button>
+            <paper-button bind-events="{ click: view.onDone }">I'm Done</paper-button>
+        </div>
+    </paper-dialog>
+
+    <paper-dialog with-backdrop="true"
+        entry-animation="slide-from-right-animation"
+        exit-animation="fade-out-animation"
+        bind-attr="{ name: opened, enabled: view.showNoteVerifyDialog }">
+        <h2>Reminder</h2>
+        <div>
+            All right, do you need to add any notes before it's marked as done?
+            <paper-textarea label="Additional Notes"></paper-textarea>
+        </div>
+        <div class="buttons">
+            <paper-button bind-events="{ click: view.onCancelNotes }">Cancel</paper-button>
+            <paper-button autofocus bind-events="{ click: view.onCompletelyDone }">Mark Done</paper-button>
+        </div>
+    </paper-dialog>
+
 </template>

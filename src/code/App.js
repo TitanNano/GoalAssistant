@@ -4,6 +4,9 @@ import PageManager from './managers/PageManager';
 import GoalListPage from './pages/GoalListPage';
 import SettingsPage from './pages/SettingsPage';
 import GoalStepsPage from './pages/GoalStepsPage';
+import GoalDetailsPage from './pages/GoalDetailsPage';
+import StepEditPage from './pages/StepEditPage';
+import ReminderModalController from './pages/ReminderModalController';
 
 const App = {
 
@@ -13,6 +16,9 @@ const App = {
         GoalListPage,
         SettingsPage,
         GoalStepsPage,
+        GoalDetailsPage,
+        StepEditPage,
+        ReminderModalController,
     ],
 
     navigation: [

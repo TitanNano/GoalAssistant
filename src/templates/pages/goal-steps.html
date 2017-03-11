@@ -1,24 +1,62 @@
 <template>
-    <paper-material elevation="2" page slide-page goal-steps-page bind-display="view.isVisible"
+    <paper-material elevation="2" page page-no-bg slide-page goal-steps-page bind-display="view.isVisible"
         bind-animation="{ view.isActive: view.animateSlideIn, view.isNotActive: view.animateSlideOut }">
-        <paper-header-panel class="flex" mode="waterfall">
+        <paper-header-panel class="flex" mode="standard">
             <paper-toolbar>
                 <paper-icon-button icon="arrow-back" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
                 <div class="title">{{view.currentGoal.title}}</div>
+                <paper-icon-button icon="editor:mode-edit" bind-events="{ click: view.onEnterGoalEdit }"></paper-icon-button>
             </paper-toolbar>
-            <div class="content fit">
-                <section class="padding">
-                    <h2>{{view.currentStep.title}}</h2>
-                </section>
-                <section>
-                    <textarea step-input rows="10"></textarea>
-                </section>
-                <hr>
-                <template bind-repeat="step in view.currentGoal">
-                    <section class="padding">
-                        {{step.noteData}}
-                    </section>
-                    <br>
+            <div class="content fit layout vertical">
+                <paper-dialog modal="true" entry-animation="scale-up-animation"
+                    scope-id="view.doneDialog"
+                    exit-animation="fade-out-animation">
+                    <h2>Whats Up next?</h2>
+                    <div class="layout vertical action-list">
+                        <paper-item>
+                            I achived my goal!
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                        <paper-item>
+                            I have an other step.
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                        <paper-item bind-events="{ click: view.onCancelDone }">
+                            Nevermind, take me back.
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                    </div>
+                </paper-dialog>
+                <template bind-repeat="step in view.previousSteps">
+                    <paper-card class="flex pased-step-card">
+                        <div class="card-title">
+                            <h5>{{step.title}}</h5>
+                            <div class="subtitle">Due to: {{step.dueTo}}</div>
+                        </div>
+                        <div class="card-content">{{step.noteData}}</div>
+                    </paper-card>
+                </template>
+                <paper-card elevation="5" class="flex" scope-id="view.currentStepElement">
+                    <div class="card-title">
+                        <h5>{{view.currentStep.title}}</h5>
+                        <div class="subtitle">Due to: {{view.currentStep.dueTo}}</div>
+                    </div>
+                    <textarea placeholder="Enter new notes for your current step..." material-full-width rows="10"></textarea>
+                    <div class="card-actions">
+                        <paper-button class="primary"
+                            bind-events="{ click: view.onMarkAsDone }">
+                            Complete
+                        </paper-button>
+                    </div>
+                </paper-card>
+                <template bind-repeat="step in view.futureSteps">
+                    <paper-card class="flex">
+                        <div class="card-title">
+                            <h5>{{step.title}}</h5>
+                            <div class="subtitle">Due to: {{step.dueTo}}</div>
+                        </div>
+                        <div class="card-content">{{step.noteData}}</div>
+                    </paper-card>
                 </template>
             </div>
         </paper-header-panel>
