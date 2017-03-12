@@ -1,0 +1,20 @@
+{
+  "name": "goal-assistant-server",
+  "version": "1.0.0",
+  "description": "the GoalAssistant server",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "server",
+    "express"
+  ],
+  "author": "Jovan Gerodetti (TitanNano)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.24"
+  }
+}
