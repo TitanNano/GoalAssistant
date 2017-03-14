@@ -3,6 +3,7 @@ const GoalTrait = {
     title: String,
     description: String,
     steps: Array,
+    currentStep: String,
 };
 
 module.exports = GoalTrait;

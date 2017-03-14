@@ -23,10 +23,14 @@
   "homepage": "https://github.com/TitanNano/GoalAssistant#readme",
   "devDependencies": {
     "@af-modules/compiler": "^1.1.1",
+    "child_process": "^1.0.2",
+    "colors": "^1.1.2",
     "gulp": "^3.9.1",
     "gulp-bundle-templates": "^1.0.2",
+    "gulp-clean": "^0.3.2",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "gulp-sym": "^1.0.2",
     "gulp-vulcanize": "^6.1.0"
   },
   "dependencies": {

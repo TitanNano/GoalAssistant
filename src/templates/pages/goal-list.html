@@ -6,7 +6,7 @@
                 <div class="title">{{view.title}}</div>
             </paper-toolbar>
             <div class="content fit fab-aware">
-                <paper-listbox bind-model-event="selectedIndex:selectedIndex:currentTarget.selectedIndex"
+                <paper-listbox
                     bind-events="{ iron-select: view.onGoalSelected }">
                     <template bind-repeat="item in view.currentGoals">
                         <paper-item>

@@ -1,5 +1,7 @@
 import ViewPage from '@af-modules/databinding/prototypes/ViewPage';
 import PageManager from '../managers/PageManager';
+import GoalManager from '../managers/GoalManager';
+import StepsManager from '../managers/StepsManager';
 
 const GoalsDetailsPage = {
     route: ['/goals/{goalId}/steps/details', '/goals/new'],
@@ -21,6 +23,10 @@ const GoalsDetailsPage = {
         }]
     },
 
+    get newSteps() {
+        return StepsManager.getPendingSteps();
+    },
+
     onRouteEnter(path, params) {
         super.onRouteEnter(path, params);
 
@@ -31,6 +37,10 @@ const GoalsDetailsPage = {
                 dueTo: 0,
                 steps: [],
             };
+        } else {
+            GoalManager.once(() => {
+                this.currentGoal = GoalManager.getWorkingCopy(params.goalId);
+            });
         }
     },
 
@@ -52,7 +62,28 @@ const GoalsDetailsPage = {
         const id = parseInt(event.target.dataset.id);
         const step = this.view.currentGoal.steps[id];
 
-        PageManager.down(`edit-step/${step.id}`);
+        PageManager.down(`edit-step/${step._id}`);
+    },
+
+    onSave() {
+        if (this.view.currentGoal._id) {
+            StepsManager.saveNew();
+            GoalManager.update(this.view.currentGoal);
+        } else {
+            GoalManager.create(this.view.currentGoal).then((goal) => {
+                StepsManager.setCurrentGoal(goal._id);
+
+                return StepsManager.saveNew().then(steps => {
+                    goal.steps = steps;
+
+                    if (steps.length) {
+                        goal.currentStep = steps[0]._id;
+                    }
+                });
+            }).then(() => this.__apply__());
+        }
+
+        PageManager.up();
     },
 
     __proto__: ViewPage,

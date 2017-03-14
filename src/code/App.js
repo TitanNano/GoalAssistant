@@ -1,5 +1,7 @@
 import Application from 'application-frame/core/Application';
 import PageManager from './managers/PageManager';
+import GoalManager from './managers/GoalManager';
+import StepsManager from './managers/StepsManager';
 
 import GoalListPage from './pages/GoalListPage';
 import SettingsPage from './pages/SettingsPage';
@@ -33,6 +35,8 @@ const App = {
     init() {
         super.init();
 
+        GoalManager.init();
+        StepsManager.init();
         PageManager.init({ pages: this.pages, navigation: this.navigation });
     },
 

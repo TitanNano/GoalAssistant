@@ -4,12 +4,15 @@
         <paper-header-panel mode="waterfall">
             <paper-toolbar>
                 <paper-icon-button icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
-                <div class="title">New Step</div>
-                <paper-button>Save</paper-button>
+                <div class="title">{{view.title}}</div>
+                <paper-button bind-events="{ click: view.onSaveStep }">Save</paper-button>
             </paper-toolbar>
             <div class="content fit padding">
-                <paper-input label="Step Title"></paper-input>
-                <paper-input label="Due To"></paper-date-picker>
+                <paper-input label="Step Title"
+                    bind-model="view.currentStep.title"
+                    bind-model-event="input:value:target.value"></paper-input>
+                <paper-input label="Due To" bind-model="view.visibleDueToValue"
+                    bind-model-event="input:value:target.value"></paper-date-picker>
             </div>
         </paper-header-panel>
     </paper-matertial>

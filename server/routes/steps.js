@@ -240,6 +240,10 @@ exports.init = function(app) {
                             }
                         });
 
+                        if (!goal.currentStep && goal.steps.length) {
+                            goal.currentStep = goal.steps[0].toString();
+                        }
+
                         return Db.put('goals', goal);
                     });
                 }).then(() => {

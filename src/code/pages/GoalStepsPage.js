@@ -1,6 +1,8 @@
 import EventManager from 'application-frame/core/EventTarget';
 import ViewPage from '@af-modules/databinding/prototypes/ViewPage';
 import PageManager from '../managers/PageManager';
+import GoalManager from '../managers/GoalManager';
+import StepsManager from '../managers/StepsManager';
 
 const GoalStepsPage = {
 
@@ -12,20 +14,26 @@ const GoalStepsPage = {
 
     doneDialog: null,
 
+    currentGoalId: null,
+
+    get _currentStepIndex() {
+        return this.currentGoal.steps.findIndex(step => step._id === this.currentGoal.currentStep);
+    },
+
     get isNotActive() {
         return !this.isActive;
     },
 
     get currentStep() {
-        return this.currentGoal.steps[this.currentGoal.currentStep];
+        return this.currentGoal.steps[this._currentStepIndex];
     },
 
     get previousSteps() {
-        return this.currentGoal.steps.slice(0, this.currentGoal.currentStep);
+        return this.currentGoal.steps.slice(0, this._currentStepIndex);
     },
 
     get futureSteps() {
-        return this.currentGoal.steps.slice(this.currentGoal.currentStep + 1);
+        return this.currentGoal.steps.slice(this._currentStepIndex + 1);
     },
 
     currentGoal: {
@@ -70,6 +78,21 @@ const GoalStepsPage = {
         }],
     },
 
+    get currentStepNotes() {
+        return this.currentStep && this.currentStep.noteData;
+    },
+
+    set currentStepNotes(value) {
+        if (this.currentStep) {
+            this.currentStep.noteData = value;
+
+            StepsManager.updateImediately(this.currentGoalId, {
+                _id: this.currentStep._id,
+                noteData: this.currentStep.noteData,
+            });
+        }
+    },
+
     constructor() {
         super.constructor();
 
@@ -80,6 +103,26 @@ const GoalStepsPage = {
                 this.currentStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 200);
         });
+
+        GoalManager.when(list => {
+            if (this.currentGoalId) {
+                this.loadCurrentGoal(list);
+            }
+        });
+    },
+
+    loadCurrentGoal(list) {
+        const goal = list.find(goal => goal._id === this.currentGoalId);
+
+        this.currentGoal = goal;
+        this.scope.__apply__(null, true);
+    },
+
+    onRouteEnter(path, params) {
+        this.currentGoalId = params.goalId;
+        GoalManager.once(this.loadCurrentGoal.bind(this));
+
+        super.onRouteEnter(path, params);
     },
 
     onNavigateBack() {
@@ -93,11 +136,33 @@ const GoalStepsPage = {
     },
 
     onMarkAsDone() {
-        this.view.doneDialog.open();
+        const view = this.view;
+        const index = view.currentGoal.steps
+            .findIndex(step => step._id === view.currentGoal.currentStep);
+
+        if (index === view.currentGoal.steps.length - 1) {
+            view.doneDialog.open();
+        } else {
+            view.currentGoal.currentStep = view.currentGoal.steps[index + 1]._id;
+            view.currentStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            GoalManager.update(view.currentGoal);
+        }
     },
 
     onCancelDone() {
         this.view.doneDialog.cancel();
+    },
+
+    onDoneAndNext() {
+        const view = this.view;
+        const currentIndex = view.currentGoal.steps.findIndex(step => step._id === view.currentStep._id);
+
+        view.doneDialog.close();
+        view.currentGoal.currentStep = view.currentGoal.steps[currentIndex + 1]._id;
+        view.currentStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        GoalManager.update(view.currentGoal);
+
+        PageManager.down('details/edit-step/new');
     },
 
     __proto__: ViewPage,

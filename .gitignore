@@ -2,3 +2,6 @@ dist/
 node_modules/
 bower_components/
 .cache/
+platforms/cordova/platforms/
+platforms/cordova/plugins/
+platforms/cordova/www/

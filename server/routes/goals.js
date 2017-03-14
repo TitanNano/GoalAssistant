@@ -3,6 +3,12 @@ const Trait = require('../util/Trait');
 const GoalTrait = require('../traits/Goal');
 const { ObjectId } = require('mongodb');
 
+const getGoalSteps = function(goal) {
+    return Db.getList('steps', { _id: { $in: goal.steps } }, { allowEmpty: true })
+        .catch((e) => console.log('error when fetching goal steps', e))
+        .then(steps => goal.steps = steps);
+};
+
 
 exports.init = function(app) {
     app.route('/api/v1/goals/:goalId?')
@@ -27,6 +33,13 @@ exports.init = function(app) {
                     });
             } else {
                 Db.getList('goals', {}, { allowEmpty: true }).then(list => {
+
+                    const transactions = Promise.all(list.map(goal => {
+                        return getGoalSteps(goal);
+                    }));
+
+                    return transactions.then(() => list);
+                }).then((list) => {
                     res.status(200).send(list);
                 });
             }
@@ -52,8 +65,14 @@ exports.init = function(app) {
                 .isOk();
 
             if (isModelOk) {
+                req.body.steps = [];
+
                 Db.put('goals', req.body).then((result) => {
-                    res.status(200).send(result);
+                    const goalId = result.upsertedId._id;
+
+                    return Db.get('goals', { _id: goalId });
+                }).then(goal => {
+                    res.status(200).send(goal);
                 });
             }
         })
@@ -92,7 +111,10 @@ exports.init = function(app) {
                         return Db.put('goals', model);
                     }
                 }).then(() => {
-                    return Db.get('goals', { _id: id });
+                    return Db.get('goals', { _id: id })
+                        .then(goal => {
+                            return getGoalSteps(goal).then(() => goal);
+                        });
                 }).then((result) => {
                     res.status(200).send(result);
                 }).catch(error => {

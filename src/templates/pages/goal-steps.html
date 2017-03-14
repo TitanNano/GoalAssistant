@@ -17,7 +17,7 @@
                             I achived my goal!
                             <paper-ripple></paper-ripple>
                         </paper-item>
-                        <paper-item>
+                        <paper-item bind-events="{ click: view.onDoneAndNext}">
                             I have an other step.
                             <paper-ripple></paper-ripple>
                         </paper-item>
@@ -41,7 +41,10 @@
                         <h5>{{view.currentStep.title}}</h5>
                         <div class="subtitle">Due to: {{view.currentStep.dueTo}}</div>
                     </div>
-                    <textarea placeholder="Enter new notes for your current step..." material-full-width rows="10"></textarea>
+                    <textarea placeholder="Enter new notes for your current step..."
+                        material-full-width rows="10"
+                        bind-model="view.currentStepNotes"
+                        bind-model-event="input:value:target.value"></textarea>
                     <div class="card-actions">
                         <paper-button class="primary"
                             bind-events="{ click: view.onMarkAsDone }">

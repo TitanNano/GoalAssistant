@@ -5,7 +5,7 @@
             <paper-toolbar>
                 <paper-icon-button icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
                 <div class="title">{{view.currentGoal.title}}</div>
-                <paper-button>Save</paper-button>
+                <paper-button bind-events="{ click: view.onSave }">Save</paper-button>
             </paper-toolbar>
             <div class="content fit">
                 <section class="padding">
@@ -40,6 +40,14 @@
                         </paper-item>
                     </template>
                 </div>
+                <template bind-repeat="step in view.newSteps">
+                    <paper-item disabled>
+                        <paper-item-body two-line>
+                            <div>{{step.title}}</div>
+                            <div secondary>{{step.dueTo}}</div>
+                        </paper-item-body>
+                    </paper-item>
+                </template>
             </div>
         </paper-header-panel>
     </paper-material>
