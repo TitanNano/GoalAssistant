@@ -37,6 +37,7 @@
     "paper-checkbox": "PolymerElements/paper-checkbox#^1.4.2",
     "paper-card": "PolymerElements/paper-card#^1.1.4",
     "paper-fab": "PolymerElements/paper-fab#^1.2.1",
-    "paper-dialog": "PolymerElements/paper-dialog#^1.1.0"
+    "paper-dialog": "PolymerElements/paper-dialog#^1.1.0",
+    "paper-date-picker": "polymer-paper-date-picker#^1.2.0"
   }
 }

@@ -12,7 +12,18 @@
                     bind-model="view.currentStep.title"
                     bind-model-event="input:value:target.value"></paper-input>
                 <paper-input label="Due To" bind-model="view.visibleDueToValue"
-                    bind-model-event="input:value:target.value"></paper-date-picker>
+                    bind-model-event="input:value:target.value" bind-events="{ click: view.onPickDate }"></paper-input>
+
+                <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
+                    entry-animation="scale-up-animation"
+                    scope-id="view.datePickerDialog"
+                    exit-animation="fade-out-animation">
+                        <paper-date-picker scope-id="view.datePicker"></paper-date-picker>
+                        <div class="buttons">
+                            <paper-button dialog-dismiss>Cancel</paper-button>
+                            <paper-button bind-events="{ click: view.onDatePicked }">OK</paper-button>
+                        </div>
+                </paper-dialog>
             </div>
         </paper-header-panel>
     </paper-matertial>

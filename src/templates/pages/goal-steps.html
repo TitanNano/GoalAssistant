@@ -13,7 +13,7 @@
                     exit-animation="fade-out-animation">
                     <h2>Whats Up next?</h2>
                     <div class="layout vertical action-list">
-                        <paper-item>
+                        <paper-item bind-events="{ click: view.onReallyDone }">
                             I achived my goal!
                             <paper-ripple></paper-ripple>
                         </paper-item>
@@ -31,7 +31,7 @@
                     <paper-card class="flex pased-step-card">
                         <div class="card-title">
                             <h5>{{step.title}}</h5>
-                            <div class="subtitle">Due to: {{step.dueTo}}</div>
+                            <div class="subtitle">Due to: {{view.util.formatDate(step.dueTo)}}</div>
                         </div>
                         <div class="card-content">{{step.noteData}}</div>
                     </paper-card>
@@ -39,7 +39,7 @@
                 <paper-card elevation="5" class="flex" scope-id="view.currentStepElement">
                     <div class="card-title">
                         <h5>{{view.currentStep.title}}</h5>
-                        <div class="subtitle">Due to: {{view.currentStep.dueTo}}</div>
+                        <div class="subtitle">Due to: {{view.util.formatDate(view.currentStep.dueTo)}}</div>
                     </div>
                     <textarea placeholder="Enter new notes for your current step..."
                         material-full-width rows="10"
@@ -56,7 +56,7 @@
                     <paper-card class="flex">
                         <div class="card-title">
                             <h5>{{step.title}}</h5>
-                            <div class="subtitle">Due to: {{step.dueTo}}</div>
+                            <div class="subtitle">Due to: {{view.util.formatDate(step.dueTo)}}</div>
                         </div>
                         <div class="card-content">{{step.noteData}}</div>
                     </paper-card>

@@ -34,8 +34,8 @@
     "gulp-vulcanize": "^6.1.0"
   },
   "dependencies": {
-    "@af-modules/databinding": "^1.1.2",
-    "@af-modules/router": "^0.2.0",
-    "application-frame": "^0.6.3"
+    "@af-modules/databinding": "^1.1.3",
+    "@af-modules/router": "^0.2.1",
+    "application-frame": "^0.6.4"
   }
 }

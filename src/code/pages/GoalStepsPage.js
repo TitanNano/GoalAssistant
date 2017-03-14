@@ -3,12 +3,15 @@ import ViewPage from '@af-modules/databinding/prototypes/ViewPage';
 import PageManager from '../managers/PageManager';
 import GoalManager from '../managers/GoalManager';
 import StepsManager from '../managers/StepsManager';
+import Util from '../util';
 
 const GoalStepsPage = {
 
     template: 'goal-steps-page',
 
     route: '/goals/{goalId}/steps',
+
+    util: Util,
 
     currentStepElement: null,
 
@@ -147,6 +150,18 @@ const GoalStepsPage = {
             view.currentStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             GoalManager.update(view.currentGoal);
         }
+    },
+
+    onReallyDone() {
+        const view = this.view;
+        const currentIndex = view.currentGoal.steps.findIndex(step => step._id === view.currentStep._id);
+
+        view.doneDialog.close();
+        view.currentGoal.currentStep = view.currentGoal.steps[currentIndex + 1]._id;
+        view.currentStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        GoalManager.update(view.currentGoal);
+
+        view.doneDialog.close();
     },
 
     onCancelDone() {

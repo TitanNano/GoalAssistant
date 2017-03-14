@@ -25,7 +25,7 @@ const StepEditPage = {
     },
 
     get visibleDueToValue() {
-        return this.currentStep && this.currentStep.dueTo;
+        return this.currentStep && (new Date(this.currentStep.dueTo)).toDateString();
     },
 
     set visibleDueToValue(value) {
@@ -34,9 +34,24 @@ const StepEditPage = {
         }
     },
 
+    get pickableDueToValue() {
+        const date = (this.currentStep && this.currentStep.dueTo !== 0) ?
+            this.currentStep.dueTo : Date.now();
+
+        return new Date(date);
+    },
+
+    set pickableDueToValue(value) {
+        if (this.currentStep) {
+            this.currentStep.dueTo = value.getTime();
+        }
+    },
+
     currentStep: null,
     stepId: null,
     goalId: null,
+    datePicker: null,
+    datePickerDialog: null,
 
     navigateBack() {
         const route = PageManager.getCurrentPath();
@@ -79,6 +94,17 @@ const StepEditPage = {
         }
 
         this.view.navigateBack();
+    },
+
+    onPickDate(e) {
+        e.target.blur();
+        this.view.datePicker.date = this.view.pickableDueToValue;
+        this.view.datePickerDialog.open();
+    },
+
+    onDatePicked() {
+        this.view.pickableDueToValue = this.view.datePicker.date;
+        this.view.datePickerDialog.close();
     },
 
     __proto__: ViewPage,
