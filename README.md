@@ -1,5 +1,5 @@
 # GoalAssistant
-An intelegent productivity tool that unifies the abilities of Notes and Reminders into on application, so you are able to reach your goal.
+An intelligent productivity tool that unifies the abilities of Notes and Reminders into on application, so you are able to reach your goal.
 
 ## Prerequisites
 Make sure the following tools are installed:
