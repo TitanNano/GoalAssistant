@@ -28,6 +28,8 @@ bower i
 1. To create a build for the web run `gulp` (default task)
 2. To create an android build
 ```
+cd platforms/cordova
+cordova platform add android
 gulp platform:android
 ```
 3. To install / run your latests android build
