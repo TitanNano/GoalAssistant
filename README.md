@@ -41,5 +41,20 @@ gulp run:android
 gulp platform:android:run
 ```
 
+## Run Server
+
+```
+cd server/
+npm i
+node .
+```
+
+A `config.json` in `server/config/`, the file should contain the folowing key-value pairs:
+```JSON
+{
+    "db_domain": "mongodb://local-user:local-user@127.0.0.1:27017/goal_assistant"
+}
+```
+
 ## Dependencies
 See `package.json`
