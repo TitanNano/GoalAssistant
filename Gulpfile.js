@@ -36,6 +36,7 @@ gulp.task('compile', ['vulcanize'], () => {
     const compile = compiler({
         cacheDir: '.cache/',
         outDir: distWeb,
+        extensions: ['.js'],
     });
 
     return gulp.src(['src/code/bootstrap.js'])
