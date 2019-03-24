@@ -4,6 +4,9 @@
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
+
+    --mdc-theme-primary: #3949ab;
+    --mdc-theme-secondary: #ffd54f;
 }
 
 .padding {
@@ -25,6 +28,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 0;
     background-color: $page-bg-color;
     width: 100vw;
     height: 100vh;
@@ -91,6 +95,10 @@ textarea {
 
 .fab-aware {
     margin-bottom: 88px;
+}
+
+.content {
+    padding-top: 65px;
 }
 
 @import './dialogs';

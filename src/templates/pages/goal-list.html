@@ -1,25 +1,23 @@
 <template>
     <div class="layout vertical" bind-display="view.isActive" page goal-list-page>
-        <paper-header-panel class="flex" mode="waterfall">
-            <paper-toolbar>
-                <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-                <div class="title">{{view.title}}</div>
-            </paper-toolbar>
-            <div class="content fit fab-aware">
-                <paper-listbox
-                    bind-events="{ iron-select: view.onGoalSelected }">
-                    <template bind-repeat="item in view.currentGoals">
-                        <paper-item>
-                            <paper-item-body two-line>
-                                <div>{{item.title}}</div>
-                                <div secondary>Curent Step: {{view.getCurrentStep(item).title}}</div>
-                            </paper-item-body>
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                    </template>
-                </paper-listbox>
-            </div>
-        </paper-header-panel>
+        <mwc-top-app-bar type="fixed">
+            <paper-icon-button slot="navigationIcon" icon="menu" paper-drawer-toggle></paper-icon-button>
+            <div slot="title" class="title">{{view.title}}</div>
+        </mwc-top-app-bar>
+        <div class="content fab-aware">
+            <paper-listbox
+                bind-events="{ iron-select: view.onGoalSelected }">
+                <template bind-repeat="item in view.currentGoals">
+                    <paper-item>
+                        <paper-item-body two-line>
+                            <div>{{item.title}}</div>
+                            <div secondary>Curent Step: {{view.getCurrentStep(item).title}}</div>
+                        </paper-item-body>
+                        <paper-ripple></paper-ripple>
+                    </paper-item>
+                </template>
+            </paper-listbox>
+        </div>
         <paper-fab icon="add" bind-events="{ click: view.onCreateNewGoal }"></paper-fab>
     </div>
 </template>

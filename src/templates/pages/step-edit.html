@@ -1,30 +1,28 @@
 <template>
     <paper-matertial page dialog-page step-edit-page elevation="2" bind-display="view.isVisible"
         bind-animation="{ view.isActive: view.animateSlideIn, view.isNotActive: view.animateSlideOut }" mode="waterfall">
-        <paper-header-panel mode="waterfall">
-            <paper-toolbar>
-                <paper-icon-button icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
-                <div class="title">{{view.title}}</div>
-                <paper-button bind-events="{ click: view.onSaveStep }">Save</paper-button>
-            </paper-toolbar>
-            <div class="content fit padding">
-                <paper-input label="Step Title"
-                    bind-model="view.currentStep.title"
-                    bind-model-event="input:value:target.value"></paper-input>
-                <paper-input label="Due To" bind-model="view.visibleDueToValue"
-                    bind-model-event="input:value:target.value" bind-events="{ click: view.onPickDate }"></paper-input>
+        <mwc-top-app-bar type="fixed">
+            <paper-icon-button slot="navigationIcon" icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
+            <div slot="title" class="title">{{view.title}}</div>
+            <paper-button slot="actionItems" bind-events="{ click: view.onSaveStep }">Save</paper-button>
+        </mwc-top-app-bar>
+        <div class="content fit padding">
+            <paper-input label="Step Title"
+                bind-model="view.currentStep.title"
+                bind-model-event="input:value:target.value"></paper-input>
+            <paper-input label="Due To" bind-model="view.visibleDueToValue"
+                bind-model-event="input:value:target.value" bind-events="{ click: view.onPickDate }"></paper-input>
 
-                <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
-                    entry-animation="scale-up-animation"
-                    scope-id="view.datePickerDialog"
-                    exit-animation="fade-out-animation">
-                        <paper-date-picker scope-id="view.datePicker"></paper-date-picker>
-                        <div class="buttons">
-                            <paper-button dialog-dismiss>Cancel</paper-button>
-                            <paper-button bind-events="{ click: view.onDatePicked }">OK</paper-button>
-                        </div>
-                </paper-dialog>
-            </div>
-        </paper-header-panel>
+            <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
+                entry-animation="scale-up-animation"
+                scope-id="view.datePickerDialog"
+                exit-animation="fade-out-animation">
+                    <paper-date-picker scope-id="view.datePicker"></paper-date-picker>
+                    <div class="buttons">
+                        <paper-button dialog-dismiss>Cancel</paper-button>
+                        <paper-button bind-events="{ click: view.onDatePicked }">OK</paper-button>
+                    </div>
+            </paper-dialog>
+        </div>
     </paper-matertial>
 </template>

@@ -1,3 +1,4 @@
+import './elements';
 import App from './App';
 
 window.addEventListener('WebComponentsReady', () => {

@@ -1,67 +1,65 @@
 <template>
     <paper-material elevation="2" page dialog-page goal-details-page bind-display="view.isVisible"
         bind-animation="{ view.isActive: view.animateSlideIn, view.isNotActive: view.animateSlideOut }">
-        <paper-header-panel mode="waterfall">
-            <paper-toolbar>
-                <paper-icon-button icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
-                <div class="title">{{view.currentGoal.title}}</div>
-                <paper-button bind-events="{ click: view.onSave }">Save</paper-button>
-            </paper-toolbar>
-            <div class="content fit">
-                <section class="padding">
-                    <paper-input label="Title" bind-model="view.currentGoal.title" bind-model-event="keyup:value:target.value"></paper-input>
-                    <paper-textarea label="Description" max-rows="3"
-                        bind-model="view.currentGoal.description"
-                        bind-model-event="keyup:value:target.value"></paper-textarea>
+        <mwc-top-app-bar type="fixed">
+            <paper-icon-button slot="navigationIcon" icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
+            <div slot="title" class="title">{{view.currentGoal.title}}</div>
+            <paper-button slot="actionItems" bind-events="{ click: view.onSave }">Save</paper-button>
+        </mwc-top-app-bar>
+        <div class="content">
+            <section class="padding">
+                <paper-input label="Title" bind-model="view.currentGoal.title" bind-model-event="keyup:value:target.value"></paper-input>
+                <paper-textarea label="Description" max-rows="3"
+                    bind-model="view.currentGoal.description"
+                    bind-model-event="keyup:value:target.value"></paper-textarea>
 
-                    <!---<paper-input label="Total Due Date" bind-model="view.visibleDueToValue"
-                        bind-model-event="input:value:target.value" bind-events="{ click: view.onPickDate }"></paper-input>
+                <!---<paper-input label="Total Due Date" bind-model="view.visibleDueToValue"
+                    bind-model-event="input:value:target.value" bind-events="{ click: view.onPickDate }"></paper-input>
 
-                    <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
-                        entry-animation="scale-up-animation"
-                        scope-id="view.datePickerDialog"
-                        exit-animation="fade-out-animation">
-                            <paper-date-picker scope-id="view.datePicker"></paper-date-picker>
-                            <div class="buttons">
-                                <paper-button dialog-dismiss>Cancel</paper-button>
-                                <paper-button bind-events="{ click: view.onDatePicked }">OK</paper-button>
-                            </div>
-                    </paper-dialog>
+                <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
+                    entry-animation="scale-up-animation"
+                    scope-id="view.datePickerDialog"
+                    exit-animation="fade-out-animation">
+                        <paper-date-picker scope-id="view.datePicker"></paper-date-picker>
+                        <div class="buttons">
+                            <paper-button dialog-dismiss>Cancel</paper-button>
+                            <paper-button bind-events="{ click: view.onDatePicked }">OK</paper-button>
+                        </div>
+                </paper-dialog>
 
-                    <p>
-                        <paper-toggle-button
-                            bind-model="view.currentGoal.public"
-                            bind-model-event="keyup:value:target.value">
-                            Publicly Visible
-                        </paper-toggle-button>
-                    </p>-->
-                </section>
-                <div class="relative-container">
-                    <hr>
-                    <paper-fab mini icon="add" bind-events="{ click: view.onCreateNewStep }"></paper-fab>
-                </div>
-                <div class="subheader">Steps</div>
-                <div bind-events="{ click: view.onEditStep }">
-                    <template bind-repeat="step in view.currentGoal.steps">
-                        <paper-item data-id="{{$index}}">
-                            <paper-item-body two-line>
-                                <div>{{step.title}}</div>
-                                <div secondary>{{view.util.formatDate(step.dueTo)}}</div>
-                            </paper-item-body>
-                            <iron-icon icon="chevron-right"></iron-icon>
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                    </template>
-                </div>
-                <template bind-repeat="step in view.newSteps">
-                    <paper-item disabled>
+                <p>
+                    <paper-toggle-button
+                        bind-model="view.currentGoal.public"
+                        bind-model-event="keyup:value:target.value">
+                        Publicly Visible
+                    </paper-toggle-button>
+                </p>-->
+            </section>
+            <div class="relative-container">
+                <hr>
+                <paper-fab mini icon="add" bind-events="{ click: view.onCreateNewStep }"></paper-fab>
+            </div>
+            <div class="subheader">Steps</div>
+            <div bind-events="{ click: view.onEditStep }">
+                <template bind-repeat="step in view.currentGoal.steps">
+                    <paper-item data-id="{{$index}}">
                         <paper-item-body two-line>
                             <div>{{step.title}}</div>
                             <div secondary>{{view.util.formatDate(step.dueTo)}}</div>
                         </paper-item-body>
+                        <iron-icon icon="chevron-right"></iron-icon>
+                        <paper-ripple></paper-ripple>
                     </paper-item>
                 </template>
             </div>
-        </paper-header-panel>
+            <template bind-repeat="step in view.newSteps">
+                <paper-item disabled>
+                    <paper-item-body two-line>
+                        <div>{{step.title}}</div>
+                        <div secondary>{{view.util.formatDate(step.dueTo)}}</div>
+                    </paper-item-body>
+                </paper-item>
+            </template>
+        </div>
     </paper-material>
 </template>

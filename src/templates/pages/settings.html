@@ -1,10 +1,10 @@
 <template>
     <paper-header-panel page settings-page class="flex" mode="waterfall" bind-display="view.isActive">
-        <paper-toolbar>
-            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-            <div class="title">Settings</div>
-        </paper-toolbar>
-        <div class="content fit padding">
+        <mwc-top-app-bar type="fixed">
+            <paper-icon-button slot="navigationIcon" icon="menu" paper-drawer-toggle></paper-icon-button>
+            <div slot="title" class="title">Settings</div>
+        </mwc-top-app-bar>
+        <div class="content padding">
             <p>
                 <paper-toggle-button>Connect with Facebook</paper-toggle-button>
             </p>
