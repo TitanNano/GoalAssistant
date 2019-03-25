@@ -129,7 +129,7 @@ const GoalStepsPage = {
     },
 
     onNavigateBack() {
-        this.view._forceVisible = true;
+        this._forceVisible = true;
 
         PageManager.switchTo('/goals');
     },
@@ -139,7 +139,7 @@ const GoalStepsPage = {
     },
 
     onMarkAsDone() {
-        const view = this.view;
+        const view = this;
         const index = view.currentGoal.steps
             .findIndex(step => step._id === view.currentGoal.currentStep);
 
@@ -153,7 +153,7 @@ const GoalStepsPage = {
     },
 
     onReallyDone() {
-        const view = this.view;
+        const view = this;
         const currentIndex = view.currentGoal.steps.findIndex(step => step._id === view.currentStep._id);
 
         view.doneDialog.close();
@@ -165,11 +165,11 @@ const GoalStepsPage = {
     },
 
     onCancelDone() {
-        this.view.doneDialog.cancel();
+        this.doneDialog.cancel();
     },
 
     onDoneAndNext() {
-        const view = this.view;
+        const view = this;
         const currentIndex = view.currentGoal.steps.findIndex(step => step._id === view.currentStep._id);
 
         view.doneDialog.close();

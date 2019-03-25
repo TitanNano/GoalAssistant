@@ -1,20 +1,5 @@
-import NetworkRequestBasic  from 'application-frame/core/NetworkRequest';
+import NetworkRequest  from 'application-frame/core/NetworkRequest';
 import DataStorage from 'application-frame/core/DataStorage';
-
-/**
- * [NetworkRequest description]
- *
- * @extends {NetworkRequestBasic}
- */
-const NetworkRequest = {
-    constructor(url, config) {
-        this._make(url, config);
-
-        return this;
-    },
-
-    __proto__: NetworkRequestBasic,
-};
 
 const ApiManager = {
     _baseURI: 'http://localhost:3000/api/v1',

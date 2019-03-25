@@ -34,9 +34,9 @@
     "gulp-vulcanize": "^6.1.0"
   },
   "dependencies": {
-    "@af-modules/databinding": "^1.1.3",
+    "@af-modules/databinding": "^1.2.0",
     "@af-modules/router": "^0.2.1",
     "@authentic/mwc-top-app-bar": "^0.4.2",
-    "application-frame": "^0.6.4"
+    "application-frame": "^1.0.0"
   }
 }

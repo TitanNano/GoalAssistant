@@ -24,7 +24,7 @@ const GoalListPage = {
     },
 
     onGoalSelected(e) {
-        const goal = this.view.currentGoals[e.target.selected];
+        const goal = this.currentGoals[e.target.selected];
 
         e.target.selected = -1;
 

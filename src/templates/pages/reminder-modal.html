@@ -2,7 +2,7 @@
     <paper-dialog with-backdrop="true"
         entry-animation="scale-up-animation"
         exit-animation="{{view.reminderDialogExitStrategy}}"
-        bind-attr="{ name: opened, enabled: view.showReminderDialog }">
+        bind-attr(opened)="view.showReminderDialog">
         <h2>Reminder</h2>
         <div>
             Your current step "Do something" of the goal "Reach something" is
@@ -17,7 +17,7 @@
     <paper-dialog with-backdrop="true"
         entry-animation="slide-from-right-animation"
         exit-animation="fade-out-animation"
-        bind-attr="{ name: opened, enabled: view.showNoteVerifyDialog }">
+        bind-attr(opened)="view.showNoteVerifyDialog">
         <h2>Reminder</h2>
         <div>
             All right, do you need to add any notes before it's marked as done?

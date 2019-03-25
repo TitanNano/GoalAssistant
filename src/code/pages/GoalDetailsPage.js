@@ -78,7 +78,7 @@ const GoalsDetailsPage = {
     },
 
     onNavigateBack() {
-        this.view._forceVisible = true;
+        this._forceVisible = true;
 
         PageManager.up();
     },
@@ -89,17 +89,17 @@ const GoalsDetailsPage = {
 
     onEditStep(event) {
         const id = parseInt(event.target.dataset.id);
-        const step = this.view.currentGoal.steps[id];
+        const step = this.currentGoal.steps[id];
 
         PageManager.down(`edit-step/${step._id}`);
     },
 
     onSave() {
-        if (this.view.currentGoal._id) {
+        if (this.currentGoal._id) {
             StepsManager.saveNew();
-            GoalManager.update(this.view.currentGoal);
+            GoalManager.update(this.currentGoal);
         } else {
-            GoalManager.create(this.view.currentGoal).then((goal) => {
+            GoalManager.create(this.currentGoal).then((goal) => {
                 StepsManager.setCurrentGoal(goal._id);
 
                 return StepsManager.saveNew().then(steps => {
@@ -117,13 +117,13 @@ const GoalsDetailsPage = {
 
     onPickDate(e) {
         e.target.blur();
-        this.view.datePicker.date = this.view.pickableDueToValue;
-        this.view.datePickerDialog.open();
+        this.datePicker.date = this.pickableDueToValue;
+        this.datePickerDialog.open();
     },
 
     onDatePicked() {
-        this.view.pickableDueToValue = this.view.datePicker.date;
-        this.view.datePickerDialog.close();
+        this.pickableDueToValue = this.datePicker.date;
+        this.datePickerDialog.close();
     },
 
     __proto__: ViewPage,

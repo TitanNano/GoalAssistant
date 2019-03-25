@@ -42,12 +42,12 @@ const ReminderModalController = {
     },
 
     onDone() {
-        this.view.isReminderActive = false;
-        this.view.isNoteVerifyActive = true;
+        this.isReminderActive = false;
+        this.isNoteVerifyActive = true;
     },
 
     onCompletelyDone() {
-        this.view.isNoteVerifyActive = false;
+        this.isNoteVerifyActive = false;
     },
 
     __proto__: ViewController,

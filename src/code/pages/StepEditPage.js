@@ -63,9 +63,9 @@ const StepEditPage = {
     },
 
     onNavigateBack() {
-        this.view._forceVisible = true;
+        this._forceVisible = true;
 
-        this.view.navigateBack();
+        this.navigateBack();
     },
 
     onRouteEnter(path, params) {
@@ -87,24 +87,24 @@ const StepEditPage = {
     },
 
     onSaveStep() {
-        if (this.view.stepId === 'new') {
-            StepsManager.registerToSave(this.view.currentStep);
+        if (this.stepId === 'new') {
+            StepsManager.registerToSave(this.currentStep);
         } else {
-            StepsManager.update(this.view.goalId, this.view.currentStep);
+            StepsManager.update(this.goalId, this.currentStep);
         }
 
-        this.view.navigateBack();
+        this.navigateBack();
     },
 
     onPickDate(e) {
         e.target.blur();
-        this.view.datePicker.date = this.view.pickableDueToValue;
-        this.view.datePickerDialog.open();
+        this.datePicker.date = this.pickableDueToValue;
+        this.datePickerDialog.open();
     },
 
     onDatePicked() {
-        this.view.pickableDueToValue = this.view.datePicker.date;
-        this.view.datePickerDialog.close();
+        this.pickableDueToValue = this.datePicker.date;
+        this.datePickerDialog.close();
     },
 
     __proto__: ViewPage,
