@@ -1,6 +1,4 @@
 import './elements';
 import App from './App';
 
-window.addEventListener('WebComponentsReady', () => {
-    App.init();
-});
+App.init();

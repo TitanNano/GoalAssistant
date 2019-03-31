@@ -1,6 +1,6 @@
 <template>
     <paper-drawer-panel bind-model="view.selectedPanel" bind-model-event="iron-select:selected:target.selected" force-narrow="true">
-        <div drawer>
+        <div slot="drawer">
             <paper-toolbar>
                 <div class="title">Menu</div>
             </paper-toolbar>
@@ -15,7 +15,7 @@
                 </template>
             </paper-listbox>
         </div>
-        <div main view-container class="fullbleed layout vertical">
+        <div slot="main" view-container class="fullbleed layout vertical">
             <template id="goal-list-page" src="pages/goal-list.html" replace></template>
             <template id="settings-page" src="pages/settings.html" replace></template>
             <template id="goal-steps-page" src="pages/goal-steps.html" replace></template>
