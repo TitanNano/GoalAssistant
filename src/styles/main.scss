@@ -35,6 +35,13 @@ body {
     &[page-no-bg] {
         background-color: $page-no-bg-color;
     }
+
+    .content {
+        padding-top: 65px;
+        height: 100%;
+        overflow: auto;
+        box-sizing: border-box;
+    }
 }
 
 hr  {
@@ -94,10 +101,6 @@ textarea {
 
 .fab-aware {
     margin-bottom: 88px;
-}
-
-.content {
-    padding-top: 65px;
 }
 
 @import './dialogs';

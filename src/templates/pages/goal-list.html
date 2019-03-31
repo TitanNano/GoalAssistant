@@ -1,13 +1,13 @@
 <template>
     <div class="layout vertical" bind-display="view.isActive" page goal-list-page>
-        <mwc-top-app-bar type="fixed">
+        <mwc-top-app-bar type="fixed" bind-query(scroll-target)="[goal-list-page] .content">
             <paper-icon-button slot="navigationIcon" icon="menu" paper-drawer-toggle></paper-icon-button>
             <div slot="title" class="title">{{view.title}}</div>
         </mwc-top-app-bar>
-        <div class="content fab-aware">
-            <paper-listbox
+        <div class="content">
+            <paper-listbox class="fab-aware"
                 bind-events="{ iron-select: view.onGoalSelected }">
-                <template bind-repeat="item in view.currentGoals">
+                <template bind-repeat(fast)="item in view.currentGoals">
                     <paper-item>
                         <paper-item-body two-line>
                             <div>{{item.title}}</div>

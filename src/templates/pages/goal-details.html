@@ -1,7 +1,7 @@
 <template>
     <paper-material elevation="2" page dialog-page goal-details-page bind-display="view.isVisible"
         bind-animation="{ view.isActive: view.animateSlideIn, view.isNotActive: view.animateSlideOut }">
-        <mwc-top-app-bar type="fixed">
+        <mwc-top-app-bar type="fixed" bind-query(scroll-target)="[goal-details-page] .content">
             <paper-icon-button slot="navigationIcon" icon="close" bind-events="{ click: view.onNavigateBack }"></paper-icon-button>
             <div slot="title" class="title">{{view.currentGoal.title}}</div>
             <paper-button slot="actionItems" bind-events="{ click: view.onSave }">Save</paper-button>
