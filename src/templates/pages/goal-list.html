@@ -1,7 +1,7 @@
 <template>
     <div class="layout vertical" bind-display="view.isActive" page goal-list-page>
         <mwc-top-app-bar type="fixed" bind-query(scroll-target)="[goal-list-page] .content">
-            <paper-icon-button slot="navigationIcon" icon="menu" paper-drawer-toggle></paper-icon-button>
+            <paper-icon-button slot="navigationIcon" icon="menu" bind-event(click)="view.onOpenDrawer"></paper-icon-button>
             <div slot="title" class="title">{{view.title}}</div>
         </mwc-top-app-bar>
         <div class="content">

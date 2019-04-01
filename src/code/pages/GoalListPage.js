@@ -35,6 +35,10 @@ const GoalListPage = {
         PageManager.down('new');
     },
 
+    onOpenDrawer() {
+        PageManager.isDrawerOpen = true;
+    },
+
     __proto__: ViewPage,
 };
 

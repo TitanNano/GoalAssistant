@@ -1,5 +1,6 @@
 import '@webcomponents/webcomponentsjs/bundles/webcomponents-sd';
 import '@authentic/mwc-top-app-bar';
+import '@authentic/mwc-drawer';
 import '@polymer/paper-listbox/paper-listbox';
 import '@polymer/paper-item/paper-item';
 import '@polymer/paper-item/paper-item-body';

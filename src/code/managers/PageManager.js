@@ -11,22 +11,15 @@ const PageManager = {
 
     _selectedPanel: 'main',
 
-    get selectedPanel() {
-        return this._selectedPanel;
-    },
-
-    set selectedPanel(value) {
-        if (typeof value === 'string') {
-            this._selectedPanel = value;
-        }
-    },
+    _isDrawerOpen: false,
 
     get isDrawerOpen() {
-        return this.selectedPanel === 'drawer';
+        return this._isDrawerOpen;
     },
 
     set isDrawerOpen(value) {
-        this.selectedPanel = value ? 'drawer' : 'main';
+        this._isDrawerOpen = value;
+        this.scope.update();
     },
 
     get currentPage() {
@@ -57,7 +50,7 @@ const PageManager = {
 
         this.pages = pages;
         this.navigation = navigation;
-        this.scope = DataBinding.makeTemplate(`#${this.template}`, { view: this });
+        this.scope = DataBinding.makeTemplate(`#${this.template}`, { view: this }).scope;
 
         this.pages.forEach(page => page.constructor());
         this.pages.forEach(page => this.addRoutable(page.route, page));
